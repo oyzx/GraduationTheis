@@ -1,115 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>vueRouter测试</title>
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/vue/1.0.28/vue.min.js"></script>
-	<script type="text/javascript" src="./dist/vue-router.js"></script>
-</head>
-<body>
-<div class="container" id="app">
-	<h1>欢迎来到vueRouter的测试</h1>
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="container-fluid"> 
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">供应链管理</a>
-		</div>
-		<div>
-			<ul class="nav navbar-nav" id="lis">
-				<li class="active" onclick="liActive(this)"><a v-link="{path: '/basisMa'}">基础商品信息</a></li>
-				<li onclick="liActive(this)"><a v-link="{path: '/salesType'}">销售类型</a></li>
-				<li onclick="liActive(this)"><a v-link="{path: '/sellStrategy'}">售卖策略</a></li>
-			</ul>
-		</div>
-		</div>
-	</nav>
-	<router-view></router-view>
-</div>
-<script type="text/javascript">
-	var i,j;
-	var lis = document.querySelector("#lis");
-	function liActive(e){
-		console.log(e);
-		for(i = 0;i < lis.children.length;i++){
-			lis.children[i].setAttribute('class','');
-		}
-		e.setAttribute('class','active');
-	}
-
-	var arr = {"thead":["id","商品名","规格","单位","种类"],"tbody":[[{id:1,name:"苹果",gg:"个",dw:"kg",zl:"水果"}],[{id:2,name:"熊仔饼干",gg:"盒",dw:"盒",zl:"饼干类"}],[{id:3,name:"笔",gg:"支",dw:"支",zl:"文体类"}]]};   //创建数据
-	var theadStr = "<thead><tr>";
-	for(i = 0;i < arr.thead.length;i++){
-		theadStr += "<th>"+arr.thead[i]+"</th>";
-	}
-	theadStr += "</tr></thead>"
-	var tbodyStr = "<tbody>";
-	for(i = 0;i < arr.tbody.length;i++){
-		for(j = 0;j < arr.tbody[i].length;j++){
-			tbodyStr += "<tr><td>"+arr.tbody[i][j].id+"</td>"+
-						"<td>"+arr.tbody[i][j].name+"</td>"+
-						"<td>"+arr.tbody[i][j].gg+"</td>"+
-						"<td>"+arr.tbody[i][j].dw+"</td>"+
-						"<td>"+arr.tbody[i][j].zl+"</td></tr>";
-		}
-	}
-	tbodyStr += "</tbody>";       
-	var basisMa = {      //建立基础商品信息的路由
-		name:'basisMa',
-		template:'<ol class="breadcrumb">基础商品信息：'+
-			'<li><a v-link=\'{path: "/basisMa/kindMa"}\'>种类管理</a></li>'+          //内置路由
-			'<li><a v-link=\'{path: "/basisMa/commodityMa"}\'>商品管理</a></li>'+     //内置路由
-			'<li><a v-link=\'{path: "/basisMa/order"}\'>图片信息</a></li>'+           //内置路由
-			'<li><a v-link=\'{path: "/basisMa/dataSta"}\'>图标信息</a></li>'+		  //内置路由		
-			'<li><a v-link=\'{path: "/basisMa/dataSta"}\'>供应商信息</a></li>'+       //内置路由
-		'</ol>'+
-		'<div><router-view></router-view></div>'
-	};
-	var salesType = {     //建立销售类型的路由
-		name:'salesType',
-		template:'<ol class="breadcrumb">销售类型：'+
-			'<li><a v-link=\'{path: "/salesType/configType"}\'>配置商品类型</a></li>'+
-			'<li><a v-link=\'{path: "/salesType/preOrder"}\'>预购</a></li>'+
-		'</ol>'+
-		'<div><router-view></router-view></div>'
-	};
-	var kindMa = {          //种类管理的路由
-		template:"<table class='table table-hover'>"+theadStr+tbodyStr+"</table>"
-	};
-	var commodityMa = {     //商品管理的路由
-		template:"<div><h3>我是标题3 h3. <small>我是副标题3 h3</small></h3></div>"
-	};
-	var configType = {
-		template:"<div><h3>我是配置商品类型<small>我是配置商品类型</small></h3></div>"
-	};
-	var preOrder = {
-		template:"<div><h3>我是预购<small>我是预购</small></h3></div>"
-	};
-	var router = new VueRouter();
-	router.map({         //配置路由路径
-		'/basisMa':{
-			component:basisMa,
-			subRoutes:{
-				'/kindMa':{
-					component:kindMa
-				},
-				'/commodityMa':{
-					component:commodityMa
-				}
-			}	
-		},
-		'salesType':{
-			component:salesType,
-			subRoutes:{
-				'/configType':{
-					component:configType
-				},
-				'/preOrder':{
-					component:preOrder
-				}
-			}
-		}
-	});
-	router.start(Vue.extend({}),'#app');     //启动路由
-</script> 
-</body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>oyzx</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="/dist/build.js"></script>
+  </body>
 </html>
